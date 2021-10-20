@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import { Input } from "../components/Input";
 import { TodoList } from "../components/TodoList";
 import { MyContext } from "../contexts/MyContext";
-import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 
 export const Screen = () => {
