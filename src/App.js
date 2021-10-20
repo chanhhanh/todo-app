@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { Routes } from "./configs/Routes";
+import { MyRoute } from "./components/MyRoute";
+import { Navbar } from "./components/Navbar";
+import { MyContextProvider } from "./contexts/MyContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='main m-auto max-w-3xl'>
+      <MyContextProvider>
+        <Router>
+          <Switch>
+            {Routes.map((item, index) => {
+              return (
+                <MyRoute
+                  key={index}
+                  path={item.path}
+                  component={item.component}
+                />
+              );
+            })}
+          </Switch>
+          <Navbar />
+        </Router>
+      </MyContextProvider>
     </div>
   );
 }
