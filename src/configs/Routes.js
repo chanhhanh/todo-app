@@ -1,8 +1,10 @@
 import { Screen } from "../views/Screen";
 import { About } from "../views/About";
 import { Timeline } from "../views/Timeline";
-import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import AddTaskIcon from "@mui/icons-material/AddTask";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+
 export const Routes = [
   {
     path: "/about",
@@ -14,12 +16,12 @@ export const Routes = [
     path: "/todos",
     component: Screen,
     label: "Todo list",
-    icon: <RestoreIcon />,
+    icon: <AddTaskIcon />,
   },
   {
     path: "/timeline",
     component: Timeline,
     label: "Timeline",
-    icon: <RestoreIcon />,
+    icon: <AccessTimeIcon />,
   },
 ];
