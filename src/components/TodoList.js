@@ -13,22 +13,26 @@ export const TodoList = (prop) => {
           <div className='todo grid grid-cols-2'>
             {filter.map((todo) => (
               <>
-                <Todo
-                  text={todo.text}
-                  deadline={todo.deadline}
-                  key={todo.id}
-                  todos={prop.todos}
-                  todo={todo}
-                  setTodos={prop.setTodos}
-                />
-                <TodoButtons
-                  text={todo.text}
-                  deadline={todo.deadline}
-                  key={todo.id}
-                  todos={prop.todos}
-                  todo={todo}
-                  setTodos={prop.setTodos}
-                />
+                <div>
+                  <Todo
+                    text={todo.text}
+                    deadline={todo.deadline}
+                    key={todo.id}
+                    todos={prop.todos}
+                    todo={todo}
+                    setTodos={prop.setTodos}
+                  />
+                </div>
+                <div>
+                  <TodoButtons
+                    text={todo.text}
+                    deadline={todo.deadline}
+                    key={todo.id}
+                    todos={prop.todos}
+                    todo={todo}
+                    setTodos={prop.setTodos}
+                  />
+                </div>
               </>
             ))}
           </div>
