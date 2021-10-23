@@ -1,26 +1,24 @@
 import React from "react";
-import TimelineItem from "@mui/lab/TimelineItem";
-import TimelineSeparator from "@mui/lab/TimelineSeparator";
-import TimelineConnector from "@mui/lab/TimelineConnector";
-import TimelineContent from "@mui/lab/TimelineContent";
-import TimelineDot from "@mui/lab/TimelineDot";
-import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+
 export const Todo = ({ text, deadline, todo }) => {
   return (
-    <TimelineItem>
-      <TimelineOppositeContent color='text.secondary'>
-        {deadline}
-      </TimelineOppositeContent>
-      <TimelineSeparator>
-        <TimelineDot
-          variant='outlined'
-          color={todo.completed ? "success" : "secondary"}
-        />
-        <TimelineConnector />
-      </TimelineSeparator>
-      <TimelineContent color={todo.completed ? "success" : "primary"}>
-        {text}
-      </TimelineContent>
-    </TimelineItem>
+    <>
+      <CardContent>
+        <Typography gutterBottom variant='h5' component='div'>
+          <div
+            className={
+              todo.completed ? "line-through text-gray-500" : "text-green-500"
+            }
+          >
+            {text}
+          </div>
+        </Typography>
+        <Typography variant='body2' color='text.secondary'>
+          Deadline: {deadline}
+        </Typography>
+      </CardContent>
+    </>
   );
 };

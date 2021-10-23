@@ -8,7 +8,7 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 export const Navbar = () => {
   const [value, setValue] = React.useState(-1);
   return (
-    <div className='flex justify-center fixed bottom-0 -inset-x-2/4	'>
+    <div className='flex justify-center fixed bottom-0 -inset-x-2/4'>
       <Box sx={{ width: 500 }}>
         <BottomNavigation
           showLabels

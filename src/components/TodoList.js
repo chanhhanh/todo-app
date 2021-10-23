@@ -3,7 +3,6 @@ import { MyContext } from "../contexts/MyContext";
 import { Todo } from "./Todo";
 import { TodoButtons } from "./TodoButtons";
 import Card from "@mui/material/Card";
-import Timeline from "@mui/lab/Timeline";
 
 export const TodoList = (prop) => {
   const { filter } = useContext(MyContext);
@@ -12,22 +11,16 @@ export const TodoList = (prop) => {
       {filter.length !== 0 && (
         <Card>
           <div className='todo grid grid-cols-2'>
-            <div>
-              <Timeline position='alternate'>
-                {filter.map((todo) => (
-                  <Todo
-                    text={todo.text}
-                    deadline={todo.deadline}
-                    key={todo.id}
-                    todos={prop.todos}
-                    todo={todo}
-                    setTodos={prop.setTodos}
-                  />
-                ))}
-              </Timeline>
-            </div>
-            <div>
-              {filter.map((todo) => (
+            {filter.map((todo) => (
+              <>
+                <Todo
+                  text={todo.text}
+                  deadline={todo.deadline}
+                  key={todo.id}
+                  todos={prop.todos}
+                  todo={todo}
+                  setTodos={prop.setTodos}
+                />
                 <TodoButtons
                   text={todo.text}
                   deadline={todo.deadline}
@@ -36,8 +29,8 @@ export const TodoList = (prop) => {
                   todo={todo}
                   setTodos={prop.setTodos}
                 />
-              ))}
-            </div>
+              </>
+            ))}
           </div>
         </Card>
       )}
