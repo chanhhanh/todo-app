@@ -7,6 +7,7 @@ import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
+import axios from "axios";
 
 export const Input = (props) => {
   const [time, setTime] = React.useState(new Date().toDateString().slice(3));
@@ -15,21 +16,35 @@ export const Input = (props) => {
     console.log(e.target.value);
     props.setValue(e.target.value);
   };
-  const submitHandler = (e) => {
-    e.preventDefault();
-    if (props.value) {
-      props.setTodos([
-        ...props.todos,
-        {
-          text: props.value,
-          deadline: time,
-          completed: false,
-          id: Math.random() * 10000,
-        },
-      ]);
-      props.setValue("");
-    }
+
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   if (props.value) {
+  //     props.setTodos([
+  //       ...props.todos,
+  //       {
+  //         text: props.value,
+  //         deadline: time,
+  //         completed: false,
+  //         id: Math.random() * 10000,
+  //       },
+  //     ]);
+  //     props.setValue("");
+  //   }
+  // };
+
+  const submitHandlerMongoDB = () => {
+    axios
+      .post(`${props.urlRequest}api/todo/post`, {
+        id: Math.random() * 10000,
+        text: props.value,
+        deadline: time,
+        completed: false,
+      })
+      .then(() => props.getTodoList());
+    props.setValue("");
   };
+
   const statusHandler = (e) => {
     console.log(e.target.value);
     props.setStatus(e.target.value);
@@ -61,7 +76,7 @@ export const Input = (props) => {
         <Button
           color='primary'
           disabled={!props.value}
-          onClick={submitHandler}
+          onClick={submitHandlerMongoDB}
           variant='contained'
         >
           Add

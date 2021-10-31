@@ -3,14 +3,27 @@ import { Input } from "../components/Input";
 import { TodoList } from "../components/TodoList";
 import { MyContext } from "../contexts/MyContext";
 import Container from "@mui/material/Container";
+import axios from "axios";
 
 export const Screen = () => {
   const [value, setValue] = useState("");
   const { todos, setTodos, filter, setFilter } = useContext(MyContext);
   const [status, setStatus] = useState("all");
+  const urlRequest = process.env.REACT_APP_API_KEY;
+
+  const getTodoList = () => {
+    axios.get(`${urlRequest}api/todo`).then((res) => {
+      setTodos(res.data);
+      console.log(res.data);
+    });
+  };
+
   useEffect(() => {
     filterHandler();
   }, [todos, status]);
+
+  useEffect(getTodoList, []);
+
   const filterHandler = () => {
     switch (status) {
       case "completed":
@@ -34,9 +47,17 @@ export const Screen = () => {
           status={status}
           setStatus={setStatus}
           filter={filter}
+          urlRequest={urlRequest}
+          getTodoList={getTodoList}
         />
       </div>
-      <TodoList todos={todos} setTodos={setTodos} />
+      <TodoList
+        todos={todos}
+        setTodos={setTodos}
+        urlRequest={urlRequest}
+        getTodoList={getTodoList}
+        filterHandler={filterHandler}
+      />
     </Container>
   );
 };

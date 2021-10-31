@@ -31,6 +31,9 @@ export const TodoList = (prop) => {
                     todos={prop.todos}
                     todo={todo}
                     setTodos={prop.setTodos}
+                    urlRequest={prop.urlRequest}
+                    getTodoList={prop.getTodoList}
+                    filterHandler={prop.filterHandler}
                   />
                 </div>
               </>

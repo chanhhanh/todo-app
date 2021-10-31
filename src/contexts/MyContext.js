@@ -7,12 +7,15 @@ export const MyContext = createContext({
   setStatus: () => {},
   filter: [],
   setFilter: () => {},
+  setTodoList: () => {},
+  urlRequest: "",
 });
 
 export const MyContextProvider = ({ children }) => {
   const [myTodos, setMyTodos] = useState([]);
   const [status, setStatus] = useState("all");
   const [filter, setFilter] = useState([]);
+
   return (
     <MyContext.Provider
       value={{
